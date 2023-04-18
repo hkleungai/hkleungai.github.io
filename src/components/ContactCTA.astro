@@ -1,11 +1,14 @@
 ---
 import CallToAction from './CallToAction.astro';
 import Icon from './Icon.astro';
+import { EXTERNAL_LINKS } from '../constants';
+
+const emailLink = EXTERNAL_LINKS.find(item => item.label === 'Email')?.href || '';
 ---
 
 <aside>
 	<h2>Interested in working together?</h2>
-	<CallToAction href="mailto:me@example.com">
+	<CallToAction href={emailLink}>
 		Send Me a Message
 		<Icon icon="paper-plane-tilt" size="1.2em" />
 	</CallToAction>

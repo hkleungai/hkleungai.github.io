@@ -1,23 +1,16 @@
 ---
 import Icon from './Icon.astro';
+import { SKILLS } from '../constants';
 ---
 
 <section class="box skills">
-	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="terminal-window" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Full Stack</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-	</div>
-	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Industry Leader</h2>
-		<p>Neque viverra justo nec ultrices dui. Est ultricies integer quis auctor elit.</p>
-	</div>
-	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="strategy" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Strategy-Minded</h2>
-		<p>Urna porttitor rhoncus dolor purus non enim praesent ornare.</p>
-	</div>
+	{SKILLS.map((skill, _, self) => (
+		<div class={`skill-box gap-${24 / self.length} lg:gap-1`}>
+			<Icon icon={skill.icon} color="var(--accent-regular)" size="2.5rem" gradient />
+			<h2>{skill.heading}</h2>
+			<p2 set:html={skill.description} />
+		</div>
+	))}
 </section>
 
 <style>
@@ -43,6 +36,11 @@ import Icon from './Icon.astro';
 		color: var(--gray-400);
 	}
 
+	.skill-box {
+		display: grid;
+		grid-template-rows: 40px 1fr 1fr;
+	}
+
 	@media (min-width: 50em) {
 		.box {
 			border-radius: 1.5rem;
@@ -58,5 +56,11 @@ import Icon from './Icon.astro';
 		.skills h2 {
 			font-size: var(--text-2xl);
 		}
+
+		.skill-box {
+			display: grid;
+			grid-template-rows: 40px 1fr 2fr;
+		}
+
 	}
 </style>

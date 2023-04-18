@@ -10,9 +10,10 @@ import Footer from '../components/Footer.astro';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	stackNavPaddingTop?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, stackNavPaddingTop } = Astro.props;
 ---
 
 <html lang="en">
@@ -22,13 +23,18 @@ const { title, description } = Astro.props;
 	<body>
 		<div class="stack backgrounds">
 			<Nav />
-			<slot />
+			<div 
+				class="stack-nav" 
+				style={stackNavPaddingTop ? { paddingTop: stackNavPaddingTop } : ''}
+			>
+				<slot />
+			</div>
 			<Footer />
 		</div>
 
 		<script>
 			// Add “loaded” class once the document has completely loaded.
-			addEventListener('load', () => document.documentElement.classList.add('loaded'));
+			window.addEventListener('load', () => document.documentElement.classList.add('loaded'));
 		</script>
 
 		<style>
@@ -100,6 +106,17 @@ const { title, description } = Astro.props;
 				background-blend-mode: /*noise*/ overlay, /*footer*/ var(--bg-blend-mode),
 					/*header1*/ var(--bg-svg-blend-mode), /*header2*/ normal, /*base*/ normal;
 			}
+
+			.stack-nav {
+				padding-top: 150px;
+			}
+
+			@media (max-width: 50em) {
+				.stack-nav {
+					padding-top: 110px;
+				}
+			}
+			
 			@media (forced-colors: active) {
 				/* Deactivate custom backgrounds for high contrast users. */
 				.backgrounds {

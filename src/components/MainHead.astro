@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { WHO_I_AM } from '../constants';
 
 interface Props {
 	title?: string | undefined;
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const {
-	title = 'Jeanine White: Personal Site',
-	description = 'The personal site of Jeanine White',
+	title = `${WHO_I_AM}: Personal Site`,
+	description = `The personal site of ${WHO_I_AM}`,
 } = Astro.props;
 ---
 

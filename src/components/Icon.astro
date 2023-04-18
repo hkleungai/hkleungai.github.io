@@ -1,16 +1,17 @@
 ---
+import type { ExternalIconLabel } from '../constants';
+import { EXTERNAL_ICONS } from '../constants';
 import type { HTMLAttributes } from 'astro/types';
-import { iconPaths } from './IconPaths';
 
 export interface Props {
-	icon: keyof typeof iconPaths;
+	icon: ExternalIconLabel;
 	color?: string;
 	gradient?: boolean;
 	size?: string;
 }
 
 const { color = 'currentcolor', gradient, icon, size } = Astro.props;
-const iconPath = iconPaths[icon];
+const iconPath = EXTERNAL_ICONS[icon];
 
 const attrs: HTMLAttributes<'svg'> = {};
 if (size) attrs.style = { '--size': size };
