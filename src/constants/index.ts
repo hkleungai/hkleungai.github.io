@@ -1,6 +1,6 @@
 export const WHO_I_AM = "Jimmy Leung";
 
-export const WHERE_I_LIVE = 'Tin Shui Wai, Hong Kong';
+export const WHERE_I_LIVE = 'Hong Kong';
 
 export const EXTERNAL_ICONS = {
 	'terminal-window': `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="m80 96 40 32-40 32m56 0h40"/><rect width="192" height="160" x="32" y="48" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16.97" rx="8.5"/>`,
