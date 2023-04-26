@@ -52,3 +52,7 @@ export const SKILLS: { heading: string; description: string; icon: ExternalIconL
 		icon: 'strategy',
 	},
 ];
+
+// TODO: Centralize with the one living in the CV.latex.js repo
+export { default as SKILL_METRICS_SCHEMA } from './skills.metrics.v2.json';
+export { default as WORK_EXP_SCHEMA } from './work.experience.v2.json';

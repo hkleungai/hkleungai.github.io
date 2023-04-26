@@ -1,0 +1,150 @@
+{
+    "type": "heading",
+    "label": ["Work Experience"],
+    "elements": [
+        {
+            "type": "subheading",
+            "label": [
+                "Coherent Capital Advisors",
+                "Software Developer Intern, Jun 2019 - Aug 2020",
+                "Frontend Software Engineer, Jul 2021 - Apr 2023"
+            ],
+            "elements": [
+                {
+                    "type": "ul",
+                    "elements": [
+                        {
+                            "type": "ul",
+                            "label": [
+                                "Work as a core developer in the Coherent Flow Team"
+                            ],
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Develop and maintain digital forms solution",
+                                        "which serves multinational clients"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Work with developers and the Design System Team",
+                                        "on customized UI theming"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Collaborate with remote backend team to establish API standard"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Assist other project team to develop ad-hoc features on top of core architecture"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "ol",
+                            "label": [
+                                "Achievement:"
+                            ],
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Successfully launch software solutions",
+                                        "to FWD Smart and Coherent Flow projects,",
+                                        "meeting all project requirements and achieving high user satisfaction"
+                                    ]
+
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Seamlessly deliver high-quality composite components,",
+                                        "such as PDF Viewer and Table,",
+                                        "in just two sprints or less"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Play a key role in helping the team",
+                                        "migrate user management to a secure Single-Sign-On solution within one sprint"
+                                    ]
+                                },
+                                
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Partner with the project team",
+                                        "to incorporate a third-party payment gateway under a tight timeline,",
+                                        "ensuring a smooth payment experience for users"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Co-develop with colleagues a client-side API SDK for internal microservices, ",
+                                        "enhancing development efficiency for other software teams"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "ul",
+                            "label": [
+                                "Technology Stack:"
+                            ],
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "React",
+                                        "JSON Schema",
+                                        "Ant-Design",
+                                        "Socket.io",
+                                        "Jest"
+                                    ],
+                                    "options": {
+                                        "labelPrefix": "Frontend: ",
+                                        "labelDelimiter": ", "
+                                    }
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "RESTful API",
+                                        "Express.js",
+                                        "Node.js"
+                                    ],
+                                    "options": {
+                                        "labelPrefix": "Backend: ",
+                                        "labelDelimiter": ", "
+                                    }
+                                },
+                                {
+                                    "type": "text",
+                                    "label": [
+                                        "Git",
+                                        "Jira",
+                                        "Agile",
+                                        "Waterfall"
+                                    ],
+                                    "options": {
+                                        "labelPrefix": "Workflow: ",
+                                        "labelDelimiter": ", "
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

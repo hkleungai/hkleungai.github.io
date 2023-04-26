@@ -1,0 +1,241 @@
+---
+import { WHO_I_AM, WORK_EXP_SCHEMA } from '../constants';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+
+function json_schema_to_html(schema: any, parent: any = null) {
+    if ((schema.label && !Array.isArray(schema.label) || schema.label?.some((l: unknown) => typeof l !== 'string'))) {
+        throw new Error('Non-array / non-string label(s) is not allowed');
+    }
+    if (schema.type === 'heading' || schema.type === 'subheading') {
+        return [
+            ...(schema.elements || []).map((elem: any) => json_schema_to_html(elem, schema)),
+        ].join('\n');
+    }
+    const { labelDelimiter = ' ', labelPrefix = '' } = schema.options || {}
+    const label = labelPrefix + (schema.label || []).join(labelDelimiter);
+    if (schema.type === 'ol') {
+        return [
+            label,
+            "<ol>",
+            ...schema.elements.map((elem: any) => "<li class='who-am-i-description'>" + json_schema_to_html(elem, schema) + "</li>"),
+            "</ol>",
+        ].filter(Boolean).join('\n');
+    }
+    if (schema.type === 'ul') {
+        return [
+            label,
+            "<ul>",
+            ...(schema.elements || []).map((elem: any) => "<li class='who-am-i-description'>" + json_schema_to_html(elem, schema) + "</li>"),
+            "</ul>",
+        ].filter(Boolean).join('\n');
+    }
+    if (schema.type === 'text') {
+        return label;
+    }
+    throw new Error('unreachable schema type is not allowed: ' + schema.type);
+}
+
+console.log(json_schema_to_html(WORK_EXP_SCHEMA.elements[0]));
+
+
+---
+
+<style>
+	section.section-invisible {
+		display: none;
+	}
+</style>
+
+<BaseLayout 
+	title={`Work Experience | ${WHO_I_AM}`}
+	description={`About ${WHO_I_AM}`}
+>
+	<div class:list={["stack", "gap-20"]}>
+		<main class:list={["wrapper", "about"]}>
+			<div class="about-welcome-message">
+				<h5 class="about-welcome-message-heading">
+					"The successful warrior is the average man, with laser-like focus.", Bruce Lee
+				</h5>
+				<div class="hard-working-div">
+					<img
+						height="120"
+						width="120"
+						src="https://cdn.lihkg.com/stickers/dog/itdog0.png"
+						alt={`${WHO_I_AM} expressing sincere gratitude to visitors`}
+					/>
+				</div>
+			</div>
+
+			<section>
+				<h2 class="section-title" set:html={WORK_EXP_SCHEMA.elements[0].label[0]}></h2>
+				<div class="content" set:html={json_schema_to_html(WORK_EXP_SCHEMA.elements[0])}>
+					<!-- <ul>
+						<li class='who-am-i-description'>
+							A Software Engineer with 3 years&#39; experience in enterprise-scaled web applications.
+						</li>
+						<li class='who-am-i-description'>
+							A HKUST Degree Awardee in Bachelor of Computer Science with Second Class Honors. (<a href="./assets/HKUST-Award-Certification-Letter.pdf">Certification Letter</a>).
+						</li>
+						<li class='who-am-i-description'>
+							An algorithm addict, in which I
+							<ul>
+								<li class='who-am-i-description'>
+									completed 656 questions in <a href="https://leetcode.com/jimmy-leung/">my LeetCode account</a>.
+								</li>
+								<li class='who-am-i-description'>
+									completed 665 kata in <a href="https://www.codewars.com/users/hkleungai">my CodeWars account</a>.
+								</li>
+							</ul>
+						</li>						
+						<li class='who-am-i-description'>
+							An active contributor in open community project, in which I help
+							<ul>
+								<li class='who-am-i-description'>
+									Introduce type fix in json-web-token (with <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/61825">Approved PR</a>)
+								</li>
+								<li class='who-am-i-description'>
+									Raise a critical CSS build issue in mozilla's pdfjs-dist (with <a href="https://github.com/mozilla/pdf.js/issues/15260">issue link</a>)
+								</li>
+								<li class='who-am-i-description'>
+									Introduce hacky fix to VSCode Markdown PDF extension (in <a href="https://github.com/yzane/vscode-markdown-pdf/issues/189#issuecomment-718054350">here</a>)
+								</li>
+								<li class='who-am-i-description'>
+									Rework on several more npm packages, 
+									e.g. 
+									<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/61836">jsoneditor</a>,
+									<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56587">react-pdf</a>,
+									<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/51618">three-dat.gui</a>,
+									<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/57788">json-merge-patch</a>, 
+									etc
+								</li>
+							</ul>
+						</li>
+					</ul> -->
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-0);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: 1.2rem;
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	li.who-am-i-description:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	li.who-am-i-description ul, li.who-am-i-description ol {
+		margin-top: 1rem;
+	}
+
+	.hard-working-div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.stack-nav {
+		padding-top: 100px;
+	}
+
+	.about-welcome-message {
+		display: flex; 
+		gap: 1rem;
+		flex-direction: column-reverse;
+		align-items: center;
+		text-align: center;		
+	}
+
+	.about-welcome-message .about-welcome-message-heading {
+		max-width: 50ch; 
+		margin-inline: auto; 
+		line-height: 1.5;
+		color: --var(--gray-999);
+		font-weight: 900;
+		font-family: cookie, cursive;
+		text-align: center;
+		/* mix-blend-mode: difference; */
+		filter: drop-shadow(.05em .05em orange);
+        font-size: 1.25rem;
+	}
+
+	div.content table.skills {
+		border-collapse: collapse;
+		width: 100%;
+		/* background-color: #f6f3fb; */
+		/* background-color: var(--accent-super-light); */
+		background: var(--gradient-accent-light-orange);
+	}
+	div.content table td, table th {
+		vertical-align: top;
+		border: 1px solid var(--gray-50);
+		text-align: left;
+		padding: 8px;
+	}
+	div.content table th {
+		/* background-color: #673ab7; */
+		background-color: var(--accent-dark);
+		color: var(--gray-999);
+	}
+	div.content table td {
+		color: var(--gray-50) !important;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>
